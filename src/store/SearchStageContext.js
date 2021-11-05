@@ -1,53 +1,96 @@
 import React, { useState, createContext } from "react";
 
-export const SearchStageContext = createContext();
-// export StageProvider and StageContext
+export const SearchParametersContext = createContext();
+// export SearchProvider and SearchContext
 
-export const SearchStageProvider = (props) => {
-  const [showStars, setShowStars] = useState(false);
-  const [showCuisine, setShowCuisine] = useState(false);
-  const [showBorough, setShowBorough] = useState(false);
-  const [starString, setStarString] = useState("");
-  const [cuisineString, setCuisineString] = useState("");
-  const [boroughString, setBoroughString] = useState("");
-  const [showStarsAgg, setShowStarsAgg] = useState(false);
-  const [showCuisineAgg, setShowCuisineAgg] = useState(false);
-  const [showBoroughAgg, setShowBoroughAgg] = useState(false);
-  const [showGeo, setShowGeo] = useState(false);
-  const [showGeoAgg, setShowGeoAgg] = useState(false);
-  const [geoString, setGeoString] = useState("");
+export const SearchParametersProvider = (props) => {
+  const [restaurants, setRestaurants] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [food, setFood] = useState("");
+  const [operator, setOperator] = useState("text");
+  const [distance, setDistance] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const [functionScore, setFunctionScore] = useState(null);
+  const [stars, setStars] = useState(1);
+  const [borough, setBorough] = useState();
+  const [cuisine, setCuisine] = useState([]);
+  const [stages, setStages] = useState({
+    searchStage: {},
+    limitStage: {},
+    projectStage: {},
+  });
+  const [facetStage, setFacetStage] = useState({});
+  const [showDistanceInput, setShowDistanceInput] = useState(false); // USED IN SEARCH SIDE BAR FOR GEOWITHIN OPERATOR OPTION
+  const [valid, setValid] = useState(false); // IF VALID SEARCH EXECUTED - WILL SHOW BUTTONS TO CLEAR/AGGREGATION/FUNCTION SCORE
+  const [showSuggestions, setShowSuggestions] = useState(false); // FOR AUTOCOMPLETED RESTAURANT NAMES IN SEARCH BAR
+  const [showMenu, setShowMenu] = useState(false); // POP UP FOR RESTAURANT MENU ITEMS
+  const [index, setIndex] = useState(0);
+  const [showAggregation, setShowAggregation] = useState(false); // TO SHOW MODAL FOR AGGREGATION CODE
+  const [showFacetCode, setShowFacetCode] = useState(false); // TO SHOW MODAL FOR FACET CODE
+  const [showSearchStage, setShowSearchStage] = useState(false);
+  const [noResultsMsg, setNoResultsMsg] = useState("");
+  const [cuisineBuckets, setCuisineBuckets] = useState([]);
+  const [boroughBuckets, setBoroughBuckets] = useState([]);
+  const [facetOverallCount, setFacetOverallCount] = useState(0);
+  const [showFacets, setShowFacets] = useState(true);
 
   const value = {
-    showStars,
-    setShowStars,
-    showCuisine,
-    setShowCuisine,
-    showBorough,
-    setShowBorough,
-    cuisineString,
-    setCuisineString,
-    starString,
-    setStarString,
-    boroughString,
-    setBoroughString,
-    showStarsAgg,
-    setShowStarsAgg,
-    showCuisineAgg,
-    setShowCuisineAgg,
-    showBoroughAgg,
-    setShowBoroughAgg,
-    showGeo,
-    setShowGeo,
-    showGeoAgg,
-    setShowGeoAgg,
-    geoString,
-    setGeoString,
+    restaurants,
+    setRestaurants,
+    searchTerm,
+    setSearchTerm,
+    food,
+    setFood,
+    operator,
+    setOperator,
+    distance,
+    setDistance,
+    submitted,
+    setSubmitted,
+    showAggregation,
+    setShowAggregation,
+    showFacetCode,
+    setShowFacetCode,
+    setShowSearchStage,
+    showSearchStage,
+    functionScore,
+    setFunctionScore,
+    stars,
+    setStars,
+    borough,
+    setBorough,
+    cuisine,
+    setCuisine,
+    stages,
+    setStages,
+    facetStage,
+    setFacetStage,
+    valid,
+    setValid,
+    showSuggestions,
+    setShowSuggestions,
+    showMenu,
+    setShowMenu,
+    index,
+    setIndex,
+    showDistanceInput,
+    setShowDistanceInput,
+    noResultsMsg,
+    setNoResultsMsg,
+    cuisineBuckets,
+    setCuisineBuckets,
+    boroughBuckets,
+    setBoroughBuckets,
+    setFacetOverallCount,
+    facetOverallCount,
+    showFacets,
+    setShowFacets,
   };
 
   return (
-    <SearchStageContext.Provider value={value}>
+    <SearchParametersContext.Provider value={value}>
       {props.children}
-    </SearchStageContext.Provider>
+    </SearchParametersContext.Provider>
   );
 };
 
