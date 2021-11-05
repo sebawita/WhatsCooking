@@ -94,7 +94,7 @@ export const useHomeFetch = () => {
       console.log("BOROUGH BUCKETS", boroughBuckets);
       console.log("FACET STAGE", res.data.searchMetaStageString);
 
-      setShowFacets(false); // change to true later
+      setShowFacets(true);
     });
   };
 
@@ -103,8 +103,8 @@ export const useHomeFetch = () => {
     if (!submitted) return;
 
     postSearch();
-    // postFacets();
-    // console.log("FACET COUNT", facetOverallCount);
+    postFacets();
+    console.log("FACET COUNT", facetOverallCount);
     setSubmitted(false);
 
     // eslint-disable-next-line
