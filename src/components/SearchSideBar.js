@@ -244,7 +244,7 @@ const SearchSideBar = ({
       circle: {
         center: {
           type: "Point",
-          coordinates: [-73.98474, 40.76289],
+          coordinates: [-0.15526, 51.48143],
         },
         radius: dist,
       },
@@ -258,7 +258,7 @@ const SearchSideBar = ({
     near: {
       origin: {
         type: "Point",
-        coordinates: [-73.98474, 40.76289],
+        coordinates: [-0.15526, 51.48143],
       },
       pivot: 1609,
       path: "location",
